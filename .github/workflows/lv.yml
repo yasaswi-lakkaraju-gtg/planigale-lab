@@ -1,0 +1,23 @@
+name: labs-validator
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  labs-validator:
+    name: Labs Validator
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Labs Validator
+        uses: safestack-hq/labs-action@v0.0.4
+        with:
+          command: "webconfig-easy"
+        env:
+          LABS_AUTH: '${{secrets.LABS_AUTH}}'
+
+
